@@ -1,6 +1,7 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Inject, Query } from '@nestjs/common';
 import { EmailService } from './email.service';
 import { RedisService } from 'src/redis/redis.service';
+import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @Controller('email')
 export class EmailController {
@@ -10,7 +11,19 @@ export class EmailController {
   @Inject(RedisService)
   private redisService: RedisService;
 
-  @Get('register-captcha')
+  @ApiQuery({
+    name: 'address',
+    type: String,
+    description: '邮箱地址',
+    required: true,
+    example: 'xxx@xx.com',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: '发送成功',
+    type: String,
+  })
+  @Get('captcha')
   async captcha(@Query('address') address: string) {
     const code = Math.random().toString().slice(2, 8);
 
