@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MeetingRoom } from './entities/meeting-room.entity';
 import { CreateMeetingRoomDto } from './dto/create-meeting-room.dto';
-import { log } from 'console';
 
 @Injectable()
 export class MeetingRoomService {
