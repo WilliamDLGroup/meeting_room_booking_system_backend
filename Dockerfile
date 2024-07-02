@@ -1,4 +1,4 @@
-FROM node as build-stage
+FROM node:18.12 as build-stage
 
 
 RUN npm install -g pnpm
@@ -16,7 +16,7 @@ COPY . .
 RUN pnpm run build
 
 # production stage
-FROM node as production-stage
+FROM node:18.12 as production-stage
 
 RUN npm install -g pnpm
 
