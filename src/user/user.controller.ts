@@ -138,7 +138,7 @@ export class UserController {
     vo.username = user.username;
     vo.headPic = user.headPic;
     vo.phoneNumber = user.phoneNumber;
-    vo.nickName = user.nickName;
+    // vo.nickName = user.nickName;
     vo.isFrozen = user.isFrozen;
     vo.roles = user.roles;
     vo.createTime = user.createTime;

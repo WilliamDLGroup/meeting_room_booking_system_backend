@@ -40,14 +40,14 @@ export class UserService {
     user1.password = md5('111111');
     user1.email = 'xxx@xx.com';
     user1.isAdmin = true;
-    user1.nickName = '张三';
+    // user1.nickName = '张三';
     user1.phoneNumber = '13233323333';
 
     const user2 = new User();
     user2.username = 'lisi';
     user2.password = md5('222222');
     user2.email = 'yy@yy.com';
-    user2.nickName = '李四';
+    // user2.nickName = '李四';
 
     const role1 = new Role();
     role1.name = '管理员';
@@ -88,7 +88,7 @@ export class UserService {
       username: user.username,
       headPic: user.headPic,
       phoneNumber: user.phoneNumber,
-      nickName: user.nickName,
+      // nickName: user.nickName,
       isAdmin: user.isAdmin,
       roles: user.roles.map((item) => item.name),
       permissions: user.roles.reduce((arr, item) => {
@@ -127,7 +127,7 @@ export class UserService {
     newUser.username = user.username;
     newUser.password = md5(user.password);
     newUser.email = user.email;
-    newUser.nickName = user.nickName;
+    // newUser.nickName = user.nickName;
 
     //给新注册的用户分配默认的角色--普通用户
     const roles = await this.roleRepository.find({
@@ -167,7 +167,7 @@ export class UserService {
     vo.userInfo = {
       id: user.id,
       username: user.username,
-      nickName: user.nickName,
+      // nickName: user.nickName,
       email: user.email,
       phoneNumber: user.phoneNumber,
       headPic: user.headPic,

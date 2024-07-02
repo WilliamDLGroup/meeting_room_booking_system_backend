@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MeetingRoom } from './entities/meeting-room.entity';
 import { CreateMeetingRoomDto } from './dto/create-meeting-room.dto';
+import { UpdateMeetingRoomDto } from './dto/update-meeting-room.dto';
 
 @Injectable()
 export class MeetingRoomService {
@@ -66,8 +67,27 @@ export class MeetingRoomService {
     //   throw new BadRequestException(error?.message);
     // }
   }
-  async update(id: number, meetingRoomDto: CreateMeetingRoomDto) {
-    return await this.repository.update(id, meetingRoomDto);
+  async update(meetingRoomDto: UpdateMeetingRoomDto) {
+    const meetingRoom = await this.repository.findOneBy({
+      id: meetingRoomDto.id,
+    });
+
+    if (!meetingRoom) {
+      throw new BadRequestException('会议室不存在');
+    }
+
+    try {
+      return await this.repository.save({
+        ...meetingRoom,
+        ...meetingRoomDto,
+      });
+    } catch (error) {
+      throw new BadRequestException(error?.message);
+    }
+  }
+
+  async findById(id: number) {
+    return await this.repository.findOneBy({ id });
   }
   async delete(id: number) {
     return await this.repository.delete(id);
