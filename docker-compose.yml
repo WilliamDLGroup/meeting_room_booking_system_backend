@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  meeting-room-booking-sys-frontend-vue3:
+    image: registry.cn-heyuan.aliyuncs.com/williamdl/meeting-room-booking-sys-frontend-vue3:v0.6
+    ports:
+      - 80:80
+    depends_on:
+      - nest-app
+    networks:
+      - common-network
+
   nest-app:
     build:
       context: ./
