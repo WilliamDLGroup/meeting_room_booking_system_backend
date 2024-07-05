@@ -21,7 +21,7 @@ services:
     networks:
       - common-network
   mysql-container:
-    image: mysql
+    image: mysql:8.0
     volumes:
       - /Users/liuliang/DockerVolumes/mysql:/var/lib/mysql
     environment:
